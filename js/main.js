@@ -1,7 +1,28 @@
 var Nakama = {};
 Nakama.configs = {
   bulletSpeed : 1500,
-  shipSpeed   : 500
+  shipSpeed   : 500,
+  player1Controls: {
+    up        : Phaser.Keyboard.UP,
+    down      : Phaser.Keyboard.DOWN,
+    left      : Phaser.Keyboard.LEFT,
+    right     : Phaser.Keyboard.RIGHT,
+    fire      : Phaser.Keyboard.SPACEBAR,
+  },
+  player2Controls: {
+    up        : Phaser.Keyboard.W,
+    down      : Phaser.Keyboard.S,
+    left      : Phaser.Keyboard.A,
+    right     : Phaser.Keyboard.D,
+    fire      : Phaser.Keyboard.F,
+  },
+  player3Controls: {
+    up        : Phaser.Keyboard.I,
+    down      : Phaser.Keyboard.K,
+    left      : Phaser.Keyboard.J,
+    right     : Phaser.Keyboard.L,
+    fire      : Phaser.Keyboard.H,
+  },
 };
 
 window.onload = function(){
@@ -14,6 +35,8 @@ window.onload = function(){
     }, false, false
   );
 }
+
+
 
 // preparations before game starts
 var preload = function(){
@@ -41,33 +64,15 @@ var create = function(){
 
   Nakama.players = [];
   Nakama.players.push(
-    new ShipController(200,400, "Spaceship1-Player.png",{
-      up        : Phaser.Keyboard.UP,
-      down      : Phaser.Keyboard.DOWN,
-      left      : Phaser.Keyboard.LEFT,
-      right     : Phaser.Keyboard.RIGHT,
-      fire      : Phaser.Keyboard.SPACEBAR,
-      cooldown  : 0.3,
-      frameNameDefault: "Spaceship1-Player.png",
-      frameNameLeft   : "Spaceship1Left-Player.png",
-      frameNameRight  : "Spaceship1Right-Player.png",
-      health          : 1
-    })
+    new ShipType1Controller(200,400,Nakama.configs.player1Controls)
   );
 
   Nakama.players.push(
-    new ShipController(400,400, "Spaceship1-Partner.png",{
-      up        : Phaser.Keyboard.W,
-      down      : Phaser.Keyboard.S,
-      left      : Phaser.Keyboard.A,
-      right     : Phaser.Keyboard.D,
-      fire      : Phaser.Keyboard.CONTROL,
-      cooldown  : 0.3,
-      frameNameDefault: "Spaceship1-Partner.png",
-      frameNameLeft   : "Spaceship1Left-Partner.png",
-      frameNameRight  : "Spaceship1Right-Partner.png",
-      health          : 1
-    })
+    new ShipType2Controller(400,400,Nakama.configs.player2Controls)
+  );
+
+  Nakama.players.push(
+    new ShipType3Controller(400,200,Nakama.configs.player3Controls)
   );
 
   Nakama.enemies = [];
