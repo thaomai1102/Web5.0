@@ -10,8 +10,9 @@ class ShipType3Controller extends ShipController {
 
 fire(){
   if(!this.sprite.alive) return;
-  this.createBullet(new Phaser.Point(0, -10));
   this.createBullet(new Phaser.Point(1, -10));
+  this.createBullet(new Phaser.Point(-2, -5));
+
 }
 
 createBullet(direction){

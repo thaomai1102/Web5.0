@@ -89,13 +89,13 @@ var create = function(){
 
 // update game state each frame
 var update = function(){
-  for(var i=0;i<Nakama.players.length;i++){
-    Nakama.players[i].update();
-  }
+  Nakama.players.forEach(function(player){
+    player.update();
+  });
 
-  for(var i=0;i<Nakama.enemies.length;i++){
-    Nakama.enemies[i].update();
-  }
+  Nakama.enemies.forEach(function(enemy){
+    enemy.update();
+  });
 
   Nakama.game.physics.arcade.overlap(Nakama.playerBulletGroup, Nakama.enemyGroup, onBulletHitActor);
   Nakama.game.physics.arcade.overlap(Nakama.enemyBulletGroup, Nakama.playerGroup, onBulletHitActor);
